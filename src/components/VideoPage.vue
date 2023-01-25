@@ -45,6 +45,7 @@ const video_start = async () => {
 let detection = null;
 let faceMatcher = null;
 let ctx = null;
+let img = null;
 
 const registPhoto = async () => {
   isReady.value = false;
@@ -53,16 +54,20 @@ const registPhoto = async () => {
   canvasRef.value.width = videoRef.value.videoWidth;
   canvasRef.value.height = videoRef.value.videoHeight;
   ctx.drawImage(videoRef.value, 0, 0, canvasRef.value.width, canvasRef.value.height);
+  img = new Image();
+  img.onload = () => {
+    createRefData();
+  }
+  img.src = canvasRef.value.toDataURL();
 
   loadingMessage.value = "参照データ作成中"
-  createRefData();
 }
 
 const createRefData = async () => {
 
   console.log(props.registName);
 
-  detection = await faceapi.detectSingleFace(canvasRef.value, new faceapi.TinyFaceDetectorOptions())
+  detection = await faceapi.detectSingleFace(img, new faceapi.TinyFaceDetectorOptions())
     .withFaceLandmarks(true).withFaceDescriptor();
   const labeledDescriptor = new faceapi.LabeledFaceDescriptors(props.registName, [detection.descriptor])
   faceMatcher = new faceapi.FaceMatcher(labeledDescriptor, 0.6);
