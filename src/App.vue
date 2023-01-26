@@ -87,15 +87,28 @@ body {
   margin-bottom: 1rem;
 }
 
-.register {
-  margin-top: 10rem;
-  background: white;
-  border-radius: 10px;
+/* Small devices (tabletS) */
+@media (min-width: 770px) {
+  .register {
+    background: white;
+    border-radius: 10px;
+  }
+}
+
+/* Medium devices (desktops) */
+@media (min-width: 1024px) {
+  .register {
+    margin-top: 10rem;
+    background: white;
+    border-radius: 10px;
+  }
 }
 
 .left,
 .right {
-  padding: 4.5rem;
+  /* padding: 4.5rem; */
+  padding-left: 4.5rem;
+  padding-right: 4.5rem;
 }
 
 .left {

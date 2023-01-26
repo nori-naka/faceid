@@ -123,7 +123,7 @@ defineExpose({
 <template>
   <div class="box">
     <div class="box">
-      <video ref="videoRef"></video>
+      <video ref="videoRef" class="is-center"></video>
       <canvas ref="canvasRef" class="is-overlay is-100"></canvas>
     </div>
   </div>
@@ -132,8 +132,14 @@ defineExpose({
 
 <style scoped>
 .box {
+  display: flex;
   position: relative;
   padding: 0px;
+  justify-content: center;
+  align-items: center;
+}
+.is-center {
+  margin: auto;
 }
 .is-100 {
   width: 100%;
